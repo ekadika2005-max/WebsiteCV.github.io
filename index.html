@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV & Portofolio Interaktif - Eka Mahardika</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous"></script>
+    
+    <style>
+        :root {
+            --primary-color: #0ea5e9;
+            --primary-hover: #0284c7;
+            --secondary-color: #10b981;
+            --accent-color: #f43f5e;
+            
+            --bg-gradient: linear-gradient(135deg, #090d16 0%, #0f172a 50%, #090d16 100%);
+            --bg-card: rgba(15, 23, 42, 0.75);
+            --bg-card-hover: rgba(30, 41, 59, 0.85);
+            --border-color: rgba(56, 189, 248, 0.15);
+            
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            
+            --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6);
+            --shadow-glow: 0 0 25px rgba(14, 165, 233, 0.25);
+            
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            
+            --radius-sm: 8px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        [data-theme="light"] {
+            --bg-gradient: linear-gradient(135deg, #f8fafc 100%, #e2e8f0 50%, #f1f5f9 100%);
+            --bg-card: rgba(255, 255, 255, 0.85);
+            --bg-card-hover: rgba(255, 255, 255, 0.98);
+            --border-color: rgba(14, 165, 233, 0.2);
+            
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            
+            --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+            --shadow-glow: 0 0 20px rgba(14, 165, 233, 0.15);
+            
+            --glass-bg: rgba(255, 255, 255, 0.6);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg-gradient);
+            background-attachment: fixed;
+            color: var(--text-main);
+            min-height: 100vh;
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: var(--transition);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .glass-panel {
+            background: var(--bg-card);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .glass-panel:hover {
+            border-color: rgba(14, 165, 233, 0.4);
+            box-shadow: var(--shadow-glow);
+        }
+
+        section {
+            padding: 30px 0;
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-main);
+        }
+
+        .section-title i {
+            color: var(--primary-color);
+            font-size: 1.4rem;
+        }
+
+        header {
+            position: sticky;
+            top: 20px;
+            z-index: 90;
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 28px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            font-size: 1.2rem;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-btn {
+            background: var(--glass-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .nav-btn:hover {
+            transform: scale(1.08);
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .profile-badge-btn {
+            background: var(--glass-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .profile-badge-btn:hover {
+            background: var(--primary-color);
+            color: #fff;
+            border-color: var(--primary-color);
+        }
+
+        .hero-card {
+            padding: 40px;
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            gap: 40px;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 300px;
+            height: 300px;
+            background: var(--primary-color);
+            filter: blur(120px);
+            opacity: 0.2;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .avatar-container {
+            position: relative;
+            width: 190px;
+            height: 190px;
+            margin: 0 auto;
+        }
+
+        .avatar-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--primary-color);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .status-badge {
+            position: absolute;
+            bottom: 6px;
+            right: 6px;
+            background: var(--secondary-color);
+            color: #ffffff;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            border: 2px solid var(--bg-card);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #fff;
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); opacity: 0.8; }
+            50% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(0.95); opacity: 0.8; }
+        }
+
+        .student-meta {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+
+        .meta-tag {
+            background: rgba(14, 165, 233, 0.15);
+            color: var(--primary-color);
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid rgba(14, 165, 233, 0.3);
+        }
+
+        .hero-info h1 {
+            font-size: 2.3rem;
+            font-weight: 800;
+            margin-bottom: 6px;
+            letter-spacing: -0.5px;
+        }
+
+        .bio-text {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .two-column-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+
+        .origin-card {
+            padding: 32px;
+            height: 100%;
+        }
+
+        .info-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .info-item {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+
+        .info-icon {
+            width: 42px;
+            height: 42px;
+            background: rgba(14, 165, 233, 0.1);
+            color: var(--primary-color);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .info-content h4 {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 2px;
+        }
+
+        .info-content p {
+            font-weight: 600;
+            color: var(--text-main);
+            font-size: 0.95rem;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        .project-card {
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            background: var(--bg-card-hover);
+            border-color: var(--primary-color);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .project-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text-main);
+        }
+
+        .project-desc {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            flex-grow: 1;
+            line-height: 1.6;
+        }
+
+        .tech-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 20px;
+        }
+
+        .badge {
+            background: rgba(14, 165, 233, 0.1);
+            border: 1px solid rgba(14, 165, 233, 0.25);
+            color: var(--primary-color);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .btn-outline {
+            background: rgba(14, 165, 233, 0.05);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            padding: 11px 18px;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+        }
+
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-container {
+            max-width: 500px;
+            width: 100%;
+            padding: 32px;
+            position: relative;
+            transform: scale(0.9);
+            transition: var(--transition);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-overlay.active .modal-container {
+            transform: scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .modal-close:hover {
+            color: var(--accent-color);
+        }
+
+        .modal-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: 50px;
+        }
+
+        @media (max-width: 850px) {
+            .hero-card {
+                grid-template-columns: 1fr;
+                text-align: center;
+                padding: 30px 20px;
+            }
+
+            .student-meta {
+                justify-content: center;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <nav class="nav-wrapper glass-panel">
+                <a href="#" class="brand">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                    <span>portofolio.</span>
+                </a>
+                
+                <ul class="nav-links">
+                    <li><a href="#">Beranda</a></li>
+                    <li><a href="#latar-belakang">Tentang</a></li>
+                    <li><a href="#latar-belakang">Latar Belakang</a></li>
+                    <li><a href="#portfolio">Karya</a></li>
+                </ul>
+
+                <div class="nav-actions">
+                    <button class="nav-btn" id="themeToggle" aria-label="Toggle Theme">
+                        <i class="fa-solid fa-moon"></i>
+                    </button>
+
+                    <button class="profile-badge-btn" id="profilePopupBtn" aria-label="Profil Singkat">
+                        EM
+                    </button>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <section id="beranda">
+                <div class="hero-card glass-panel">
+                    <div class="avatar-container">
+                        <img src="foto-saya.png" alt="Foto Profil Eka Mahardika" class="avatar-img">
+                        <div class="status-badge">
+                            <span class="status-dot"></span> Mahasiswa Aktif
+                        </div>
+                    </div>
+                    <div class="hero-info">
+                        <div class="student-meta">
+                            <span class="meta-tag">NPM: 25053031</span>
+                            <span class="meta-tag">Informatika</span>
+                            <span class="meta-tag">Angkatan 2025</span>
+                        </div>
+                        <h1>Eka Mahardika Putra</h1>
+                        <p class="bio-text">
+                            Mahasiswa Teknik Informatika yang berfokus pada pengembangan aplikasi web, logika pemrograman, dan pemecahan masalah secara kreatif untuk menciptakan solusi digital yang solutif.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="latar-belakang">
+                <div class="two-column-grid">
+                    <div class="origin-card glass-panel">
+                        <h2 class="section-title"><i class="fa-solid fa-compass"></i> Latar Belakang</h2>
+                        <ul class="info-list">
+                            <li class="info-item">
+                                <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
+                                <div class="info-content">
+                                    <h4>Asal Daerah</h4>
+                                    <p>Surabaya</p>
+                                </div>
+                            </li>
+                            <li class="info-item">
+                                <div class="info-icon"><i class="fa-solid fa-building-columns"></i></div>
+                                <div class="info-content">
+                                    <h4>Riwayat Pendidikan</h4>
+                                    <p>Universitas Wijaya Putra (2025 - Sekarang)</p>
+                                    <p style="font-size: 0.85rem; color: var(--text-muted); font-weight: 400;">SMK Wijaya Putra Surabaya (2022 - 2024)</p>
+                                    <p style="font-size: 0.85rem; color: var(--text-muted); font-weight: 400;">SMP Negeri 47 Surabaya (2018 - 2021)</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="portfolio">
+                <h2 class="section-title"><i class="fa-solid fa-laptop-code"></i> Karya & Portofolio</h2>
+                <div class="portfolio-grid" id="portfolioContainer"></div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 Eka Mahardika - CV Mahasiswa Interaktif. Dibuat dengan HTML, CSS, & JS Murni.</p>
+        </footer>
+    </div>
+
+    <div class="modal-overlay" id="projectModal">
+        <div class="modal-container glass-panel">
+            <button class="modal-close" onclick="closeModal('projectModal')">&times;</button>
+            <h3 class="modal-title" id="modalTitle">Judul Proyek</h3>
+            <div class="tech-badges" id="modalBadges" style="margin-bottom: 16px;"></div>
+            <p id="modalDescription" style="color: var(--text-muted); line-height: 1.7; margin-bottom: 24px;"></p>
+            <div style="display: flex; gap: 12px; justify-content: flex-end;">
+                <button class="btn-outline" onclick="closeModal('projectModal')" style="width: auto;">Tutup</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="profileModal">
+        <div class="modal-container glass-panel">
+            <button class="modal-close" onclick="closeModal('profileModal')">&times;</button>
+            <h3 class="modal-title"><i class="fa-solid fa-user-graduate" style="color: var(--primary-color);"></i> Profil Singkat Eka</h3>
+            <div style="margin: 20px 0; font-size: 0.95rem; color: var(--text-muted); line-height: 1.7;">
+                <p style="margin-bottom: 12px;"><strong>Nama:</strong> Eka Mahardika Putra</p>
+                <p style="margin-bottom: 12px;"><strong>Program Studi:</strong> Teknik Informatika - Universitas Wijaya Putra</p>
+                <p>Website portofolio pribadi ini dirancang interaktif untuk menampilkan profil akademik serta daftar karya yang pernah dibuat.</p>
+            </div>
+            <div style="display: flex; justify-content: flex-end;">
+                <button class="btn-outline" onclick="closeModal('profileModal')" style="width: auto;">Tutup</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        
+        const projectsData = [
+            {
+                title: "Aplikasi Pengecekan Pajak Kendaraan",
+                desc: "Layanan digital untuk melakukan pengecekan dan pembayaran Pajak Kendaraan secara online.",
+                fullDesc: "Layanan digital untuk melakukan pengecekan dan pembayaran Pajak Kendaraan Bermotor (PKB) serta SWDKLLJ secara online yang dirancang dengan antarmuka yang bersih dan interaktif.",
+                badges: ["Figma", "UI/UX", "Prototyping"],
+                link: "https://www.figma.com/proto/xsSxRbtUZOnc0iXvFHQrgM/Untitled?node-id=1-2842&p=f&t=03gVKDxKihPVIK8A-0&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A2842"
+            },
+            {
+                title: "Sistem Manajemen Pegawai (PBO)",
+                desc: "Program berbasis Pemrograman Berorientasi Objek (PBO) dalam bahasa Python untuk mengelola data pegawai.",
+                fullDesc: "Sistem manajemen pegawai yang dibangun menggunakan konsep Pemrograman Berorientasi Objek (PBO) berbasis Python. Menyediakan fungsi pengelolaan data karyawan, struktur kelas yang modular, serta logika manipulasi data pegawai secara terstruktur.",
+                badges: ["Python", "PBO / OOP", "GitHub"],
+                link: "https://github.com/ekadika2005-max/sistem-manajemen-pegawai/blob/main/PBO%20SISTEM%20PEGAWAI.py"
+            }
+        ];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProjects();
+            setupEventListeners();
+        });
+
+        function renderProjects() {
+            const container = document.getElementById('portfolioContainer');
+            container.innerHTML = projectsData.map((proj, idx) => `
+                <div class="project-card">
+                    <h3 class="project-title">${proj.title}</h3>
+                    <p class="project-desc">${proj.desc}</p>
+                    <div class="tech-badges">
+                        ${proj.badges.map(b => `<span class="badge">${b}</span>`).join('')}
+                    </div>
+                    <button class="btn-outline" onclick="openProjectModal(${idx})">
+                        <i class="fa-solid fa-circle-info"></i> Detail Karya
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        window.closeModal = function(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) modal.classList.remove('active');
+        };
+
+        window.openProjectModal = function(index) {
+            const projectModal = document.getElementById('projectModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalBadges = document.getElementById('modalBadges');
+            const modalDescription = document.getElementById('modalDescription');
+
+            const project = projectsData[index];
+            modalTitle.textContent = project.title;
+            modalDescription.textContent = project.fullDesc;
+            modalBadges.innerHTML = project.badges ? project.badges.map(b => `<span class="badge">${b}</span>`).join('') : '';
+
+            const actionContainer = projectModal.querySelector('.modal-container > div:last-child');
+            const existingLinkBtn = document.getElementById('modalLinkBtn');
+            if (existingLinkBtn) existingLinkBtn.remove();
+
+            if (project.link) {
+                const linkBtn = document.createElement('a');
+                linkBtn.id = 'modalLinkBtn';
+                linkBtn.href = project.link;
+                linkBtn.target = '_blank';
+                linkBtn.className = 'btn-outline';
+                linkBtn.style.cssText = 'background: var(--primary-color); color: #fff; border: none; text-decoration: none; width: auto;';
+                linkBtn.innerHTML = '<i class="fa-solid fa-arrow-up-right-from-square"></i> Buka Link Proyek';
+                actionContainer.prepend(linkBtn);
+            }
+
+            projectModal.classList.add('active');
+        };
+
+        function setupEventListeners() {
+            const themeToggle = document.getElementById('themeToggle');
+            const profilePopupBtn = document.getElementById('profilePopupBtn');
+            const profileModal = document.getElementById('profileModal');
+
+            themeToggle.addEventListener('click', () => {
+                const currentTheme = document.body.getAttribute('data-theme');
+                const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+                
+                document.body.setAttribute('data-theme', newTheme);
+                themeToggle.innerHTML = newTheme === 'light' 
+                    ? '<i class="fa-solid fa-sun"></i>' 
+                    : '<i class="fa-solid fa-moon"></i>';
+            });
+
+            profilePopupBtn.addEventListener('click', () => {
+                profileModal.classList.add('active');
+            });
+
+            document.querySelectorAll('.modal-overlay').forEach(modal => {
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) modal.classList.remove('active');
+                });
+            });
+        }
+    </script>
+</body>
+</html>
